@@ -1,0 +1,38 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa' // JPA support
+	compile group: 'org.springframework.boot', name: 'spring-boot-devtools' // using for JPA console
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator' // expose endpoints mapping
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas' // expose Hypermedia for actuator MVC endpoints
+	
+	compile group: 'com.h2database', name: 'h2' // in memory DB - NOTE persistent
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
